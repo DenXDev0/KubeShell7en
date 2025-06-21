@@ -1,0 +1,431 @@
+@use "sass:list";
+// #-----------------------#
+// # Colors & Variables    #
+// #-----------------------#
+$fg-color: #{"@theme_fg_color"};
+$bg-color: #{"@theme_bg_color"};
+$bg-color-alpha: #{"@gtk-bg-color"};
+$borders: #{"@borders"};
+
+// #-----------------------#
+// # Window Bar Styling    #
+// #-----------------------#
+window.Bar {
+    background: transparent;
+    color: $fg-color;
+    font-weight: bold;
+    -gtk-icon-size: 17px;
+
+    // Button Styling
+    button {
+        // background-color: $borders;
+        border-radius: 5px;
+        margin: 2px;
+        min-height: 5px;
+        padding: 2px 5px;
+        // -gtk-icon-size: 20px;
+    }
+
+    // Popover Styling
+    popover > contents, arrow {
+        background: $bg-color-alpha;
+    }
+
+    // Box Widget Styling
+    BoxWidget {
+        background-color: $bg-color-alpha;
+        border-radius: 6px;
+        margin: 5px 4px;
+        padding: 3px;
+        border: 1px solid $borders;
+    }
+
+    // #-----------------------#
+    // # Menu Styling         #
+    // #-----------------------#
+    .MenuButton {
+        DashButton * {
+            all: unset;
+            -gtk-icon-size: 9px;
+        }
+    }
+
+    // #-----------------------#
+    // # Calendar UI Styling  #
+    // #-----------------------#
+    .Calendar {
+        padding: 0 7px;
+
+        TimeNow {
+            font-size: 12px;
+        }
+
+        DateNow {
+            font-size: 10px;
+            font-weight: normal;
+        }
+
+    }
+
+    // #-----------------------#
+    // # Media UI Styling     #
+    // #-----------------------#
+    .Media {
+        TitleMpris {
+            font-size: 10px;
+        }
+
+        ArtistMpris {
+            font-size: 9px;
+            font-weight: normal;
+        }
+
+        CoverMpris {
+            background-color: $borders;
+            margin: 2px;
+            // padding: 0 7px;
+            border-radius: 2px;
+            -gtk-icon-size: 25px;
+        }
+
+        ControlMpris {
+            image {
+                -gtk-icon-size: 10px;
+            }
+        }
+
+        .btn-cava-on, .btn-cava-off {
+            padding: unset;
+            -gtk-icon-size: 13px;
+        }
+
+        .btn-cava-off {
+            background-color: #7a72f06f;
+        }
+
+        CavaBar {
+            color: #F38BA8;
+            font-size: 20px;
+            letter-spacing: -9px;
+        }
+    }
+
+    // #-----------------------#
+    // # Workspace & Window UI #
+    // #-----------------------#
+    .WorkspaceWindow {
+        font-size: 9px;
+
+        WindowTitle {
+            font-weight: normal;
+        }
+
+        // Workspace Button Styling
+        .workspaceButton {
+            min-height: 10px;
+            min-width: 10px;
+            padding: unset;
+            border-radius: 5px;
+            background-color: $borders;
+            transition: all 0.3s ease;
+        }
+
+        .workspaceButton:hover {
+            background-color: orangered;
+        }
+
+        .wrsOccupied {
+            background-color: #CBA6F7;
+            min-height: 10px;
+            min-width: 10px;
+        }
+
+        .wrsActive {
+            min-width: 25px;
+            background-color: $fg-color;
+        }
+
+        // .wrsInactive {
+        //     background-color: red;
+        // }
+    }
+
+    // #-----------------------#
+    // # Shortcut UI Styling  #
+    // #-----------------------#
+    .Shorcut {
+        ShorcutTool {
+            button {
+                background: unset;
+            }
+        }
+    }
+
+    // #-----------------------#
+    // # Control UI Styling   #
+    // #-----------------------#
+    .Control {
+        ControlSystem {
+            -gtk-icon-size: 13px;
+
+            button {
+                background-color: unset;
+            }
+
+            button:hover {
+                background-color: #CBA6F7;
+            }
+        }
+
+        // Text styling for various components
+        NetSpeed, BatPercent {
+            font-size: 12px;
+        }
+
+        WifiTitle, BattTimeTofull, BattTimeToEmpty, BattStatusFull {
+            font-size: 10px;
+            font-weight: normal;
+        }
+
+        // .PanelButton, .BattButtonIcon {
+        //     background-color: $borders;
+        // }
+    }
+  
+
+    // #------------#
+    // # ContentBox #
+    // #------------#
+    popover {
+        // #-----------#
+        // # PinnedApp #
+        // #-----------#
+        .ContentBox.PinnedApp {
+            padding: 2px;
+    
+            $pastel-colors: 
+            #FF6F61, // Pastel Coral Red (berani, cerah)
+            #6EC1E4, // Pastel Sky Blue (terang dan cerah)
+            #FFB6C1, // Pastel Light Pink (soft tapi cerah)
+            #8BDE93, // Pastel Mint Green (cerah dan segar)
+            #FFD700, // Pastel Yellow (terang dan menyala)
+            #FF6347, // Pastel Tomato Red (cukup mencolok)
+            #BFD8B8, // Pastel Light Olive Green (nyaman di mata)
+            #F08080, // Pastel Salmon (agak oranye, cerah)
+            #DDA0DD, // Pastel Orchid (ungu cerah)
+            #F5A9B8; // Pastel Rose (mewah dan mencolok)
+    
+            @each $workspace-id in (1, 2, 3, 4, 5, 6, 7, 8, 9, 10) {
+                .Wpc#{$workspace-id} {
+                    // border-bottom: 2px solid nth($pastel-colors, $workspace-id);
+                    border-bottom: 2px solid list.nth($pastel-colors, $workspace-id);
+                    background-color: unset;
+                    // border-style: dashed;
+                    // padding: unset;
+                    border-radius: unset;
+                }
+                .WinFocused.Wpc#{$workspace-id} {
+                    // background-color: nth($pastel-colors, $workspace-id);
+                    border: 2px solid list.nth($pastel-colors, $workspace-id);
+                    border-radius: 5px;
+                }
+            }
+
+            button:hover {
+                background-color: #CBA6F7;
+                border-radius: 5px;
+            }
+        }
+
+        // #-------------#
+        // # MediaPlayer #
+        // #-------------#
+        .ContentBox.MediaPlayer {
+            CoverMpris {
+                background-color: $borders;
+                // margin: 2px;
+                // padding: 0 7px;
+                border-radius: 5px;
+                -gtk-icon-size: 200px;
+            }
+
+            ArtistMpris {
+                font-size: 20px;
+                font-weight: normal;
+            }
+
+            TitleMpris {
+                font-size: 15px;
+            }
+            
+    
+            ControlMpris {
+                padding: 5px;
+                image {
+                    padding: 5px;
+                    -gtk-icon-size: 15px;
+                }
+            }
+
+            .shuffle-ON {
+                color: #CBA6F7;
+            }
+
+            .loop-Track {
+                color: #CBA6F7;
+                border-left: 2px solid red;
+            }
+
+            .loop-Playlist {
+                color: #CBA6F7;
+            }
+        }
+
+
+        // #----------#
+        // # Calendar #
+        // #----------#
+        .ContentBox.Calendar {
+            .critical{
+                color: red;
+            }
+            .urgent{
+                color: orange;
+            }
+            .high{
+                color: yellow;
+            }
+            .medium{
+                color: greenyellow;
+            }
+            .low{
+                color: cyan;
+            }
+            .optional{
+                color: whitesmoke;
+            }
+            .none {
+                color: transparent;
+            }
+
+
+            
+            TitlePage {
+                padding: 8px;
+
+                listTitle {
+                    // border: 1px solid $borders;
+                    border-radius: 10px;
+
+                    button {
+                        border-radius: 50px;
+                        padding: unset;
+                    }
+                }
+
+                
+                .showPriority {
+                    padding: 7px;
+                    font-size: 10px;
+                }
+
+                .priorityChange{
+                    // font-size: 15px;
+                    background-color: $borders;
+                    padding: 3px;
+                    border-radius: 50px;
+                    border: 2px solid transparent;
+                }
+
+                .priorityChange.select{
+                    border: 2px solid #CBA6F7;
+                }
+
+                .priorityChange:hover{
+                    background-color: #CBA6F7;
+                }
+
+
+            }
+
+            
+            TaskPage {
+                padding: 8px;
+
+                .strikethrough > label {
+                    text-decoration: line-through;
+                    color: gray;
+                }
+                
+            }
+
+            inputTitleBox{
+                margin: 5px 0;
+                padding: 10px;
+                border: 2px solid powderblue;
+                border-radius: 10px;
+                
+                .priority{
+                    font-size: 15px;
+                    background-color: $borders;
+                    padding: 5px;
+                    border-radius: 50px;
+                    border: 2px solid transparent;
+                }
+
+                .priority.select{
+                    border: 2px solid #CBA6F7;
+                }
+
+                .priority:hover{
+                    background-color: #CBA6F7;
+                }
+            }
+
+            inputTaskBox {
+                margin: 5px 0;
+                padding: 10px;
+                border: 2px solid $borders;
+                border-radius: 10px;
+            }
+
+        }
+
+
+    }
+
+    .ContentBox.Shorcut {
+        WidgetBox {
+            border: 2px solid $borders;
+            border-radius: 10px;
+            
+            WidgetLabel {
+                // background-color: $borders;
+                padding: 5px;
+            }
+
+            WidgetBoxChild {
+                padding: 5px;
+
+                ButtonTimerSS {
+                    border: 1px solid $borders;
+                    border-radius: 5px;
+                    margin: 1.5px;
+                    
+                    button {
+                        padding: unset;
+                    }
+                    
+                }
+
+            }
+        }
+    }
+
+    // #-----------------------#
+    // # Global Button Hover  #
+    // #-----------------------#
+    button:hover {
+        background-color: #CBA6F7;
+    }
+}

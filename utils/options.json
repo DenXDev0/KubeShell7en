@@ -1,0 +1,26 @@
+{
+  "Window": [
+    "testhh"
+  ],
+  "Weather": {
+    "apiKey": "4bcb1511f53d4cb588b152649252605",
+    "country": "ID",
+    "city": "SUMEDANG"
+  },
+  "PinnedApp": [
+    "zen",
+    "org.kde.dolphin",
+    "codium",
+    "org.qbittorrent.qBittorrent",
+    "org.gnome.Snapshot",
+    "org.gnome.Music",
+    "kitty",
+    "vlc",
+    "org.pulseaudio.pavucontrol",
+    "org.gtk.Demo4",
+    "org.gnome.Loupe",
+    "Spotify",
+    "mpv",
+    "foot"
+  ]
+}
